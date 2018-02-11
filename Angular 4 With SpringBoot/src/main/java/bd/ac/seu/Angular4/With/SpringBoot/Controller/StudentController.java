@@ -7,24 +7,25 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping(value = "/students")
 public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @PostMapping()
-    public void saveStudent(@RequestBody Student student){
+    @PostMapping
+    public void saveStudent(@RequestParam String id, @RequestParam double cgpa, @RequestParam String name){
+        Student student = new Student(id, name, cgpa);
         studentService.saveStudent(student);
     }
 
-    @PutMapping()
+    @PutMapping
     public void updateStudent(@RequestBody Student student){
         studentService.updateStudent(student);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Student> getAllStudent(){
         return studentService.getAllStudent();
     }
@@ -39,6 +40,5 @@ public class StudentController {
     public Student getStudent(@PathVariable("id") String id){
         return studentService.getStudent(id);
     }
-
 
 }

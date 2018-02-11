@@ -33,4 +33,8 @@ public class StudentService {
     public void updateStudent(Student student) {
         studentRepository.save(student);
     }
+
+    public Student getStudent1(String name){
+        return studentRepository.findByName(name);
+    }
 }
